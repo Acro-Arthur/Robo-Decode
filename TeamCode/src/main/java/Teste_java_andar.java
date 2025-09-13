@@ -48,31 +48,34 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Basic: Linear OpMode", group="Linear OpMode")
+@TeleOp(name="TeleOp_Java", group="Linear OpMode")
 
 public class Teste_java_andar extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-    private DcMotor motor_esquerdo = null;
-    private DcMotor motor_direito = null;
+    private DcMotor motor_esquerdo_frente = null;
+    private DcMotor motor_esquerdo_tras = null;
+    private DcMotor motor_direito_tras = null;
+    private DcMotor motor_direito_frente = null;
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Iniciado");
         telemetry.update();
 
-        // Initialize the hardware variables. Note that the strings used here as parameters
-        // to 'get' must correspond to the names assigned during the robot configuration
-        // step (using the FTC Robot Controller app on the phone).
-        motor_esquerdo  = hardwareMap.get(DcMotor.class, "left_drive");
-        motor_direito = hardwareMap.get(DcMotor.class, "right_drive");
+        //motor_esquerdo_frente = hardwareMap.get(DcMotor.class, "esquerdo_frente");
+        motor_esquerdo_tras  = hardwareMap.get(DcMotor.class, "esquerdo");
+        //motor_direito_frente = hardwareMap.get(DcMotor.class, "direito_frente");
+        motor_direito_tras = hardwareMap.get(DcMotor.class, "direito");
+
 
         // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
         // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
-        motor_esquerdo.setDirection(DcMotor.Direction.REVERSE);
-        motor_direito.setDirection(DcMotor.Direction.FORWARD);
+        motor_esquerdo_tras.setDirection(DcMotor.Direction.REVERSE);
+        motor_direito_tras.setDirection(DcMotor.Direction.FORWARD);
+
 
         // Wait for the game to start (driver presses START)
         waitForStart();
@@ -84,6 +87,7 @@ public class Teste_java_andar extends LinearOpMode {
             // Setup a variable for each drive wheel to save power level for telemetry
             double leftPower;
             double rightPower;
+
 
             // Choose to drive using either Tank Mode, or POV Mode
             // Comment out the method that's not used.  The default below is POV.
@@ -101,8 +105,8 @@ public class Teste_java_andar extends LinearOpMode {
             // rightPower = -gamepad1.right_stick_y ;
 
             // Send calculated power to wheels
-            motor_esquerdo.setPower(leftPower);
-            motor_direito.setPower(rightPower);
+            motor_esquerdo_tras.setPower(leftPower);
+            motor_direito_tras.setPower(rightPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
