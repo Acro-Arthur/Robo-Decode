@@ -71,34 +71,26 @@ public class Teste_java_andar extends LinearOpMode {
         motor_esquerdo_tras  = hardwareMap.get(DcMotor.class, "Esquerdo_tras");
         //motor_direito_frente = hardwareMap.get(DcMotor.class, "direito_frente");
         motor_direito_tras = hardwareMap.get(DcMotor.class, "Direito_tras");
-        motor_medio_1 = hardwareMap.get(DcMotor.class, "Teste_1");
-        motor_medio_2 = hardwareMap.get(DcMotor.class, "Teste_2");
+        //motor_medio_1 = hardwareMap.get(DcMotor.class, "Gobilda");
+        //motor_medio_2 = hardwareMap.get(DcMotor.class, "Teste_2");
 
 
         motor_esquerdo_tras.setDirection(DcMotor.Direction.REVERSE);
         motor_direito_tras.setDirection(DcMotor.Direction.FORWARD);
-        motor_medio_1.setDirection(DcMotor.Direction.FORWARD);
-        motor_medio_2.setDirection(DcMotor.Direction.FORWARD);
+        //motor_medio_1.setDirection(DcMotor.Direction.FORWARD);
+        //motor_medio_2.setDirection(DcMotor.Direction.FORWARD);
 
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
 
-            if (gamepad1.a = true)
-            {
-                motor_medio_1.setPower(1);
-                motor_medio_2.setPower(1);
-            } else {
-
-                motor_medio_1.setPower(0);
-                motor_medio_2.setPower(0);
-            }
-
+            motor_direito_tras.setPower(gamepad1.right_stick_y);
+            motor_esquerdo_tras.setPower(gamepad1.right_stick_y);
 
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "1 (%.2f), 2 (%.2f)", motor_medio_1.getPower(), motor_medio_2.getPower());
+            telemetry.addData("Motors", "1 (%.2f)", motor_direito_tras.getPower());
             telemetry.update();
         }
     }
