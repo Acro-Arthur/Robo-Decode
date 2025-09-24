@@ -91,8 +91,8 @@ public class Teste_java_andar extends LinearOpMode {
                 motor_medio_2.setPower(1);
             } else {
 
-                motor_medio_1.setPower();
-                motor_medio_2.setPower(1);
+                motor_medio_1.setPower(0);
+                motor_medio_2.setPower(0);
             }
 
 
