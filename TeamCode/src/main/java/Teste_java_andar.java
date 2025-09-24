@@ -31,6 +31,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -58,6 +59,8 @@ public class Teste_java_andar extends LinearOpMode {
     private DcMotor motor_esquerdo_tras = null;
     private DcMotor motor_direito_tras = null;
     private DcMotor motor_direito_frente = null;
+    private DcMotor motor_medio_1 = null;
+    private DcMotor motor_medio_2 = null;
 
     @Override
     public void runOpMode() {
@@ -65,32 +68,33 @@ public class Teste_java_andar extends LinearOpMode {
         telemetry.update();
 
         //motor_esquerdo_frente = hardwareMap.get(DcMotor.class, "esquerdo_frente");
-        motor_esquerdo_tras  = hardwareMap.get(DcMotor.class, "esquerdo");
+        motor_esquerdo_tras  = hardwareMap.get(DcMotor.class, "esquerdo_tras");
         //motor_direito_frente = hardwareMap.get(DcMotor.class, "direito_frente");
-        motor_direito_tras = hardwareMap.get(DcMotor.class, "direito");
+        motor_direito_tras = hardwareMap.get(DcMotor.class, "direito_tras");
+        motor_medio_1 = hardwareMap.get(DcMotor.class, "Teste_1");
+        motor_medio_2 = hardwareMap.get(DcMotor.class, "Teste_2");
+
 
         motor_esquerdo_tras.setDirection(DcMotor.Direction.REVERSE);
         motor_direito_tras.setDirection(DcMotor.Direction.FORWARD);
-
+        motor_medio_1.setDirection(DcMotor.Direction.FORWARD);
+        motor_medio_2.setDirection(DcMotor.Direction.REVERSE);
 
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
 
-            double leftPower;
-            double rightPower;
+            if(gamepad1.a = true)
+            {
+                motor_medio_1.setPower(1);
+                motor_medio_2.setPower(1);
+            }
 
-            double drive = -gamepad1.left_stick_y;
-            double turn  =  gamepad1.right_stick_x;
-            leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-            rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
 
-            motor_esquerdo_tras.setPower(leftPower);
-            motor_direito_tras.setPower(rightPower);
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+            telemetry.addData("Motors", "left (%.2f), right (%.2f)", "oi" );
             telemetry.update();
         }
     }
