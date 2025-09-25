@@ -71,8 +71,8 @@ public class Teste_java_andar extends LinearOpMode {
         motor_esquerdo_tras  = hardwareMap.get(DcMotor.class, "Esquerdo_tras");
         //motor_direito_frente = hardwareMap.get(DcMotor.class, "direito_frente");
         motor_direito_tras = hardwareMap.get(DcMotor.class, "Direito_tras");
-        //motor_medio_1 = hardwareMap.get(DcMotor.class, "Gobilda");
-        //motor_medio_2 = hardwareMap.get(DcMotor.class, "Teste_2");
+        //Lançador_D = hardwareMap.get(DcMotor.class, "Gobilda");
+        //Lançador_E = hardwareMap.get(DcMotor.class, "Teste_2");
 
 
         motor_esquerdo_tras.setDirection(DcMotor.Direction.REVERSE);
