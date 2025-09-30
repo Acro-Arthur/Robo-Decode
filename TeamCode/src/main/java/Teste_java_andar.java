@@ -36,6 +36,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 
 /*
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
@@ -64,6 +66,8 @@ public class Teste_java_andar extends LinearOpMode {
     private DcMotor motor_medio_2 = null;
 
 FtcDashboard dashboard = FtcDashboard.getInstance();
+Telemetry dashboardTelemetry = dashboard.getTelemetry();
+
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Iniciado");
@@ -85,20 +89,38 @@ FtcDashboard dashboard = FtcDashboard.getInstance();
         //motor_medio_1.setDirection(DcMotor.Direction.FORWARD);
         //motor_medio_2.setDirection(DcMotor.Direction.FORWARD);
 
+        motor_direito_tras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor_esquerdo_tras.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
 
-            motor_direito_tras.setPower(gamepad1.right_stick_y);
-            motor_esquerdo_tras.setPower(gamepad1.right_stick_y);
+             if(gamepad1.a)
+            {
+                //while(gamepad1.a)
+                //{
+                //    motor_esquerdo_tras.setPower(1);
+                //    motor_direito_tras.setPower(1);
+                //}
+
+                motor_esquerdo_tras.setPower(1);
+                motor_direito_tras.setPower(1);
+
+            } else if (gamepad1.b)
+            {
+                 motor_esquerdo_tras.setPower(0);
+                 motor_direito_tras.setPower(0);
+             }
+
 
             encoder_esquerdo_tras = motor_esquerdo_tras.getCurrentPosition();
             encoder_direito_tras = motor_direito_tras.getCurrentPosition();
 
-           telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "1 (%.2f)", encoder_esquerdo_tras);
-            telemetry.update();
+           dashboardTelemetry.addData("Status", "Run Time: " + runtime.toString());
+            dashboardTelemetry.addData("Motors","1 (%.2f)", encoder_esquerdo_tras);
+            dashboardTelemetry.update();
         }
     }
 }
