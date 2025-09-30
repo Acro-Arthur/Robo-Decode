@@ -27,6 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -62,6 +63,7 @@ public class Teste_java_andar extends LinearOpMode {
     private DcMotor motor_medio_1 = null;
     private DcMotor motor_medio_2 = null;
 
+FtcDashboard dashboard = FtcDashboard.getInstance();
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Iniciado");
@@ -74,6 +76,9 @@ public class Teste_java_andar extends LinearOpMode {
         //Lançador_D = hardwareMap.get(DcMotor.class, "Gobilda");
         //Lançador_E = hardwareMap.get(DcMotor.class, "Teste_2");
 
+
+        double encoder_esquerdo_tras = 0;
+        double encoder_direito_tras = 0;
 
         motor_esquerdo_tras.setDirection(DcMotor.Direction.REVERSE);
         motor_direito_tras.setDirection(DcMotor.Direction.FORWARD);
@@ -88,9 +93,11 @@ public class Teste_java_andar extends LinearOpMode {
             motor_direito_tras.setPower(gamepad1.right_stick_y);
             motor_esquerdo_tras.setPower(gamepad1.right_stick_y);
 
+            encoder_esquerdo_tras = motor_esquerdo_tras.getCurrentPosition();
+            encoder_direito_tras = motor_direito_tras.getCurrentPosition();
 
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "1 (%.2f)", motor_direito_tras.getPower());
+           telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Motors", "1 (%.2f)", encoder_esquerdo_tras);
             telemetry.update();
         }
     }
