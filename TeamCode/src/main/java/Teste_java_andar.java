@@ -19,7 +19,7 @@
  * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
  * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIALa
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
@@ -65,8 +65,8 @@ public class Teste_java_andar extends LinearOpMode {
     private DcMotor motor_medio_1 = null;
     private DcMotor motor_medio_2 = null;
 
-FtcDashboard dashboard = FtcDashboard.getInstance();
-Telemetry dashboardTelemetry = dashboard.getTelemetry();
+    FtcDashboard dashboard = FtcDashboard.getInstance();
+    Telemetry dashboardTelemetry = dashboard.getTelemetry();
 
     @Override
     public void runOpMode() {
@@ -97,7 +97,7 @@ Telemetry dashboardTelemetry = dashboard.getTelemetry();
 
         while (opModeIsActive()) {
 
-             if(gamepad1.a)
+            if(gamepad1.a)
             {
                 //while(gamepad1.a)
                 //{
@@ -110,15 +110,15 @@ Telemetry dashboardTelemetry = dashboard.getTelemetry();
 
             } else if (gamepad1.b)
             {
-                 motor_esquerdo_tras.setPower(0);
-                 motor_direito_tras.setPower(0);
-             }
+                motor_esquerdo_tras.setPower(0);
+                motor_direito_tras.setPower(0);
+            }
 
 
             encoder_esquerdo_tras = motor_esquerdo_tras.getCurrentPosition();
             encoder_direito_tras = motor_direito_tras.getCurrentPosition();
 
-           dashboardTelemetry.addData("Status", "Run Time: " + runtime.toString());
+            dashboardTelemetry.addData("Status", "Run Time: " + runtime.toString());
             dashboardTelemetry.addData("Motors","1 (%.2f)", encoder_esquerdo_tras);
             dashboardTelemetry.update();
         }
