@@ -7,6 +7,8 @@
  * [Licença e termos omitidos para brevidade]
  */
 
+import android.annotation.SuppressLint;
+
 import com.acmerobotics.dashboard.FtcDashboard;       // Biblioteca para dashboard web
 import com.acmerobotics.dashboard.config.Config;       // Permite configuração via dashboard em tempo real
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;  // Base para código sequencial
@@ -33,15 +35,13 @@ public class programacao_magola extends LinearOpMode {
     private boolean estadoAtualBotaoA = false;
 
     // Potência inicial do lançador, agora configurável em tempo real via dashboard
-    public static double potenciaInicial = 0.7;
+    public static double potenciaInicial = 0.75   ;
 
     private double potenciaLanca = 0.0;         // Potência atual do lançador (0 a 1)
-    private static final double POTENCIA_MINIMA = 0.0;  // Limite mínimo da potência
+    private   double POTENCIA_MINIMA = 0.0;  // Limite mínimo da potência
     private static final double POTENCIA_MAXIMA = 1.0;  // Limite máximo da potência
-    private static final double INCREMENTO = 0.01;      // Incremento para ajustar potência suavemente
+    private static final double INCREMENTO = 0.01;      // Incremento para ajustar potência
 
-    // Instâncias do dashboard e sua telemetria
-    private FtcDashboard dashboard;
     private Telemetry telemetryDashboard;
 
     @Override
@@ -66,7 +66,8 @@ public class programacao_magola extends LinearOpMode {
         telemetry.update();
 
         // Inicializa dashboard e obtém telemetria dela para envio de dados
-        dashboard = FtcDashboard.getInstance();
+        // Instâncias do dashboard e sua telemetria
+        FtcDashboard dashboard = FtcDashboard.getInstance();
         telemetryDashboard = dashboard.getTelemetry();
 
         waitForStart(); // Espera o sinal para iniciar o OpMode
@@ -125,6 +126,7 @@ public class programacao_magola extends LinearOpMode {
     }
 
     // Atualiza telemetria para Driver Station e para dashboard web
+    @SuppressLint("DefaultLocale")
     private void atualizarDashboard() {
         // Envia dados para o Driver Station (tela do controle)
         telemetry.addData("Tempo", "%.2f s", runtime.seconds()); // Tempo em segundos desde o início
